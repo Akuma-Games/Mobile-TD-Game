@@ -8,30 +8,52 @@ public class IsometricCameraController : MonoBehaviour
     [SerializeField] private float panBorderThickness = 20f;
 
     private Vector3 newPosition;
+    private Vector3 startingPosition;
+
+    [SerializeField] float maxUpDistance;
+    [SerializeField] float maxDownDistance;
+    [SerializeField] float maxLeftDistance;
+    [SerializeField] float maxRightDistance;
 
     void Awake()
     {
         newPosition = transform.position;
+        startingPosition = transform.position;
     }
 
     void Update()
     {
+        Vector3 currentPosition = transform.position;
+
+        // Mouse hovering at the top
         if (Input.mousePosition.y >= Screen.height - panBorderThickness) 
         {
-            newPosition += transform.up * panSpeed;
+            if (!((newPosition + transform.up * panSpeed - startingPosition).magnitude > maxUpDistance)) {
+                newPosition += transform.up * panSpeed;
+            }
+            
         }
+        // Mouse hovering at the bottom
         else if (Input.mousePosition.y <= panBorderThickness) 
         {
-            newPosition -= transform.up * panSpeed;
+            if (!((newPosition - transform.up * panSpeed - startingPosition).magnitude > maxDownDistance)) {
+                newPosition -= transform.up * panSpeed;
+            }
         }
 
+        // Mouse hovering on the right
         if (Input.mousePosition.x >= Screen.width - panBorderThickness) 
         {
-            newPosition += transform.right * panSpeed;
+            if (!((newPosition + transform.right * panSpeed - startingPosition).magnitude > maxRightDistance)) {
+                newPosition += transform.right * panSpeed;
+            }
         }
+        // Mouse hovering on the left
         else if (Input.mousePosition.x <= panBorderThickness) 
         {
-            newPosition -= transform.right * panSpeed;
+            if (!((newPosition - transform.right * panSpeed - startingPosition).magnitude > maxLeftDistance)) {
+                newPosition -= transform.right * panSpeed;
+            }
         }
 
         //transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime);
