@@ -21,6 +21,10 @@ public class Health : MonoBehaviour
         currentHealth += amt;
         float currentHPPct = (float)currentHealth / (float)maxHealth;
         OnHealthChanged(currentHPPct);
+
+        if (currentHealth <= 0) {
+            Destroy(gameObject);
+        }
     }
     // Update is called once per frame
     void Update()
