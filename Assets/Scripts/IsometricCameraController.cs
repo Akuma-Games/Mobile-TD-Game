@@ -14,6 +14,7 @@ public class IsometricCameraController : MonoBehaviour
     [SerializeField] float maxDownDistance;
     [SerializeField] float maxLeftDistance;
     [SerializeField] float maxRightDistance;
+    [SerializeField] float maxZoom;
 
     void Awake()
     {
@@ -55,7 +56,30 @@ public class IsometricCameraController : MonoBehaviour
                 newPosition -= transform.right * panSpeed;
             }
         }
-
+        if(Input.mouseScrollDelta.y > 0)
+        {
+            if(Camera.main.orthographicSize > maxZoom)
+            {
+                Camera.main.orthographicSize--;
+                maxDownDistance += 0.5f;
+                maxLeftDistance += 0.5f;
+                maxRightDistance += 0.5f;
+                maxUpDistance += 0.5f;
+            }
+        }
+        
+        if(Input.mouseScrollDelta.y < 0)
+        {
+            if(Camera.main.orthographicSize < 10)
+            {
+                Camera.main.orthographicSize++;
+                maxDownDistance -= 0.5f;
+                maxLeftDistance -= 0.5f;
+                maxRightDistance -= 0.5f;
+                maxUpDistance -= 0.5f ;
+            }
+        }
+       
         //transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime);
         transform.position = newPosition;
     }
