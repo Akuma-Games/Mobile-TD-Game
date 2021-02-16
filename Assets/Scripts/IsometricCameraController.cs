@@ -15,6 +15,7 @@ public class IsometricCameraController : MonoBehaviour
     [SerializeField] float maxLeftDistance;
     [SerializeField] float maxRightDistance;
     [SerializeField] float maxZoom;
+
     void Awake()
     {
         newPosition = transform.position;
@@ -66,6 +67,7 @@ public class IsometricCameraController : MonoBehaviour
                 maxUpDistance += 0.5f;
             }
         }
+        
         if(Input.mouseScrollDelta.y < 0)
         {
             if(Camera.main.orthographicSize < 10)
