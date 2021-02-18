@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
 {
     [SerializeField]
     private int maxHealth = 100;
+    [SerializeField]
+    private GameObject coinPrefab;
     private int currentHealth;
     //public delegate void OnHealthChanged();
     public event UnityAction<float> OnHealthChanged = delegate { } ;
@@ -23,6 +25,7 @@ public class Health : MonoBehaviour
         OnHealthChanged(currentHPPct);
 
         if (currentHealth <= 0) {
+            Instantiate(coinPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
