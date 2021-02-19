@@ -32,7 +32,6 @@ public class IsometricCameraController : MonoBehaviour
             if (!((newPosition + transform.up * panSpeed - startingPosition).magnitude > maxUpDistance)) {
                 newPosition += transform.up * panSpeed;
             }
-            
         }
         // Mouse hovering at the bottom
         else if (Input.mousePosition.y <= panBorderThickness) 
@@ -58,13 +57,12 @@ public class IsometricCameraController : MonoBehaviour
         }
         if(Input.mouseScrollDelta.y > 0)
         {
-            if(Camera.main.orthographicSize > maxZoom)
-            {
+            if (Camera.main.orthographicSize > maxZoom) {
                 Camera.main.orthographicSize--;
-                maxDownDistance += 0.5f;
-                maxLeftDistance += 0.5f;
-                maxRightDistance += 0.5f;
-                maxUpDistance += 0.5f;
+                //maxDownDistance += 0.5f;
+                //maxLeftDistance += 0.5f;
+                //maxRightDistance += 0.5f;
+                //maxUpDistance += 0.5f;
             }
         }
         
@@ -73,10 +71,10 @@ public class IsometricCameraController : MonoBehaviour
             if(Camera.main.orthographicSize < 10)
             {
                 Camera.main.orthographicSize++;
-                maxDownDistance -= 0.5f;
-                maxLeftDistance -= 0.5f;
-                maxRightDistance -= 0.5f;
-                maxUpDistance -= 0.5f ;
+                //maxDownDistance -= 0.5f;
+                //maxLeftDistance -= 0.5f;
+                //maxRightDistance -= 0.5f;
+                //maxUpDistance -= 0.5f;
             }
         }
        
