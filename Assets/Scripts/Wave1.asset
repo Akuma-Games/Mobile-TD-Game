@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a952a682742eb48a0aab237693c089, type: 3}
   m_Name: Wave1
   m_EditorClassIdentifier: 
-  enemyWave:
+  enemyGroups:
   - enemyPrefab: {fileID: 3717077618836419762, guid: 6fda0c7b5b56e464f80caa3941e13939, type: 3}
-    enemyCount: 3
+    enemyCount: 2
     enemyRate: 2
-    cooldownForNextWave: 3
+    cooldownForNextGroup: 3
   - enemyPrefab: {fileID: 3717077618836419762, guid: 6fda0c7b5b56e464f80caa3941e13939, type: 3}
-    enemyCount: 3
+    enemyCount: 2
     enemyRate: 2
-    cooldownForNextWave: 3
+    cooldownForNextGroup: 1
+  currentGroupIndex: 0

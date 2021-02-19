@@ -1142,7 +1142,7 @@ GameObject:
   - component: {fileID: 3793443203074489146}
   - component: {fileID: 3793443203074489125}
   m_Layer: 0
-  m_Name: OrcLightInfantry
+  m_Name: OrcLightInfantryA
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1202,6 +1202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  coinPrefab: {fileID: 480969846719793550, guid: 12b70dda3833ab54fa0aa5852a663802, type: 3}
 --- !u!136 &3793443203074489146
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1228,7 +1229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ead2f3d4bd7504eab758075158e713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
 --- !u!1 &3717077618836419764
 GameObject:
   m_ObjectHideFlags: 0
