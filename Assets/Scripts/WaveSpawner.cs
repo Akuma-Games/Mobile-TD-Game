@@ -30,7 +30,8 @@ public class WaveSpawner : MonoBehaviour
 
 
             while (wave.GetGroupAtIndex(groupIndex).EnemyCount - enemySpawned > 0) {
-                Instantiate(enemyToSpawn, spawnPosition.position, Quaternion.identity);
+                GameObject enemy = Instantiate(enemyToSpawn, spawnPosition.position, Quaternion.identity);
+                enemy.name = groupIndex + " " + enemySpawned;
                 enemySpawned++;
                 yield return new WaitForSeconds(wave.GetGroupAtIndex(groupIndex).EnemyRate);
             }

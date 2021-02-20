@@ -29,6 +29,11 @@ public class Health : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public bool WillDieFromDamage(int amt) {
+        return currentHealth - amt <= 0;
+    }
+
     // Update is called once per frame
     void Update()
     {
