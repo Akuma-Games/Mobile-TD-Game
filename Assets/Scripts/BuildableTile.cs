@@ -10,6 +10,10 @@ public class BuildableTile : MonoBehaviour, IDropHandler
         
     }
 
+    private void OnMouseOver() {
+        Debug.Log(name);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -10,6 +10,8 @@ public class TowerDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     private CanvasGroup canvasGroup;
     private Vector3 originalPosition;
 
+    [SerializeField] TowerType towerType;
+
     private void Awake() {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
