@@ -21,6 +21,8 @@ public class TowerDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     public void OnBeginDrag(PointerEventData eventData) {
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
+
+        FindObjectOfType<GameManager>().CurrentTowerBuilding = towerType;
     }
 
     public void OnDrag(PointerEventData eventData) {
