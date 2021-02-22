@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using System;
 
 public class Tower : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Tower : MonoBehaviour
         enemiesInRange = new List<GameObject>();
 
         StartCoroutine(Attack());
+
     }
 
     // Update is called once per frame
@@ -47,18 +49,30 @@ public class Tower : MonoBehaviour
         while (true) {
             if (enemiesInRange.Count != 0) {
                 //yield return new WaitForSeconds(anim.GetCurrentAnimatorClipInfo(0)[0].clip.length);
+
+
+
                 if (enemiesInRange[0] != null) {
                     attackTarget = enemiesInRange[0];
                     yield return new WaitForSeconds(1.4f);
 
-                    
+                    try {
+                        if (attackTarget != null) {
 
-                    if (attackTarget.GetComponent<Health>().WillDieFromDamage(25)) {
-                        enemiesInRange.Remove(attackTarget);
-                        attackTarget.GetComponent<Health>().ChangeHP(-25);
+                            if (attackTarget.GetComponent<Health>().WillDieFromDamage(25)) {
+                                enemiesInRange.Remove(attackTarget);
+                                attackTarget.GetComponent<Health>().ChangeHP(-25);
+                            }
+                            else {
+                                attackTarget.GetComponent<Health>().ChangeHP(-25);
+                            }
+                        }
+                        else {
+                            enemiesInRange.Remove(attackTarget);
+                        }
                     }
-                    else {
-                        attackTarget.GetComponent<Health>().ChangeHP(-25);
+                    catch (Exception e) {
+                        print(e.Message);
                     }
                 }
 

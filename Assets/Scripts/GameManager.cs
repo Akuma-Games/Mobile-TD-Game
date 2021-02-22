@@ -64,4 +64,14 @@ public class GameManager : MonoBehaviour
         waveText.text = wave.ToString();
         gameOverScreen.SetActive(true);
     }
+
+    public GameObject GetTowerPrefab(TowerType towerType) {
+        return towerCollection[towerType];
+    }
+
+    public void InstantiateTower(Vector3 pos) {
+        Vector3 towerOffset = new Vector3(0, 1.1f, 0);
+        pos += towerOffset;
+        Instantiate(towerCollection[currentTowerBuilding], pos, Quaternion.identity);
+    }
 }
