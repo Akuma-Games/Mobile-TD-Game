@@ -21,8 +21,9 @@ public class PickUpScript : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
+                GetComponent<AudioSource>().Play();
                 GameManager.Instance.collectGold(10);
-                Destroy(gameObject);
+                Destroy(gameObject, 0.3f);
             }
         }
     }

@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] TowerCollection towerCollection;
 
-    private int score = 1000;
-    private int wave = 3;
+    private int score = 0;
+    private int wave = 1;
     private int gold = 0;
     private int stone = 0;
     private int wood = 0;
@@ -83,5 +83,15 @@ public class GameManager : MonoBehaviour
         Vector3 towerOffset = new Vector3(0, 1.1f, 0);
         pos += towerOffset;
         Instantiate(towerCollection[currentTowerBuilding], pos, Quaternion.identity);
+    }
+
+    // Temporary function
+    public void UseGold()
+    {
+        if (gold > 0)
+        {
+            gold--;
+            goldAmount.text = gold.ToString();
+        }
     }
 }
