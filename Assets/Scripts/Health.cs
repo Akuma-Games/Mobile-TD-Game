@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Animations;
 
 public class Health : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Health : MonoBehaviour
     private int currentHealth;
     //public delegate void OnHealthChanged();
     public event UnityAction<float> OnHealthChanged = delegate { } ;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +28,15 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0) {
             Instantiate(coinPrefab, transform.position, transform.rotation);
-            Destroy(gameObject);
+            StartCoroutine(GetComponent<Enemy>().Die());
         }
     }
 
     public bool WillDieFromDamage(int amt) {
         return currentHealth - amt <= 0;
     }
+
+    
 
     // Update is called once per frame
     void Update()
