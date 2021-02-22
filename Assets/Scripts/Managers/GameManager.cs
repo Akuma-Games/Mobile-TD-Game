@@ -47,6 +47,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        AudioSource[] sounds = FindObjectsOfType<AudioSource>();
+        foreach(AudioSource sound in sounds)
+        {
+            sound.volume = GameSettings.soundVolume;
+        }
+        GetComponent<AudioSource>().volume = GameSettings.musicVolume;
+    }
+
     public void collectGold(int amount)
     {
         gold += 10;
