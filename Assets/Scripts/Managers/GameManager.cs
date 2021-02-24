@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     {
         scoreText.text = score.ToString();
         waveText.text = wave.ToString();
+        Time.timeScale = 0;
         gameOverScreen.SetActive(true);
     }
 

@@ -16,10 +16,6 @@ public class WaveSpawner : MonoBehaviour
         StartCoroutine(SpawnWave(currentWave));
     }
 
-    private void Update() {
-        
-    }
-
     IEnumerator SpawnWave(Wave wave) {
         int groupIndex = 0;
 

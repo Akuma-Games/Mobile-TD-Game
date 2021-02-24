@@ -13,8 +13,6 @@ public class Enemy : MonoBehaviour
 
     private bool dead;
 
-    public UnityEvent OnReachingTheEnd;
-
     private void Start() {
         targetWaypoint = Waypoints.points[0];
 
@@ -36,6 +34,7 @@ public class Enemy : MonoBehaviour
     }
 
     void GetNextWaypoint() {
+        // Reached the End
         if (waypointIndex >= Waypoints.points.Length - 1) {
             GameManager.Instance.GameOver();
             Destroy(gameObject);
