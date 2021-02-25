@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
         targetWaypoint = Waypoints.points[0];
 
         dead = false;
+
+        GameManager.Instance.EnemiesInTheScene++;
     }
 
     private void Update() {
@@ -49,6 +51,7 @@ public class Enemy : MonoBehaviour
         GetComponent<Animator>().SetTrigger("Die");
         dead = true;
         yield return new WaitForSeconds(GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.length);
+        GameManager.Instance.EnemyDie();
         Destroy(gameObject);
     }
 }

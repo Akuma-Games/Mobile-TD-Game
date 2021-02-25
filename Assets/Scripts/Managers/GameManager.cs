@@ -17,14 +17,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text waveText;
     [SerializeField] GameObject gameOverScreen;
 
-    private TowerType currentTowerBuilding;
     public TowerType CurrentTowerBuilding { get; set; }
 
     [SerializeField] TowerCollection towerCollection;
 
+    [SerializeField] GameObject startWaveButton;
+
+    private int enemiesInTheScene = 0;
+    public int EnemiesInTheScene { get; set; }
+
     private int score = 0;
     private int wave = 1;
-    private int gold = 0;
+    private int gold = 90;
     private int stone = 0;
     private int wood = 0;
 
@@ -55,6 +59,11 @@ public class GameManager : MonoBehaviour
             sound.volume = GameSettings.soundVolume;
         }
         GetComponent<AudioSource>().volume = GameSettings.musicVolume;
+
+        towerCollection.Initialize();
+        goldAmount.text = gold.ToString();
+
+        EnemiesInTheScene = 0;
     }
 
     public void collectGold(int amount)
@@ -80,10 +89,19 @@ public class GameManager : MonoBehaviour
         return towerCollection[towerType];
     }
 
-    public void InstantiateTower(Vector3 pos) {
+    public void BuildTower(Vector3 pos) {
+        int towerCost = towerCollection.GetTowerCost(CurrentTowerBuilding);
+
+        if (gold < towerCost) {
+            Debug.Log("Not enough money");
+            return;
+        }
+
+        gold -= towerCost;
+        goldAmount.text = gold.ToString();
         Vector3 towerOffset = new Vector3(0, 1.1f, 0);
         pos += towerOffset;
-        Instantiate(towerCollection[currentTowerBuilding], pos, Quaternion.identity);
+        Instantiate(towerCollection[CurrentTowerBuilding], pos, Quaternion.identity);
     }
 
     // Temporary function
@@ -93,6 +111,15 @@ public class GameManager : MonoBehaviour
         {
             gold--;
             goldAmount.text = gold.ToString();
+        }
+    }
+
+    public void EnemyDie() {
+        EnemiesInTheScene--;
+
+        if (EnemiesInTheScene <= 0) {
+            // wave complete
+            startWaveButton.SetActive(true);
         }
     }
 }

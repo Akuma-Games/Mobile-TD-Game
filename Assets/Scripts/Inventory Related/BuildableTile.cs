@@ -7,20 +7,7 @@ public class BuildableTile : MonoBehaviour, IDropHandler
 {
     public void OnDrop(PointerEventData eventData) {
         Debug.Log("OnDrop: " + name);
-        FindObjectOfType<GameManager>().InstantiateTower(transform.position);
-    }
-
-    public void OnDrag(PointerEventData eventData) {
-        Debug.Log("OnMouseDrag: " + name);
-        //FindObjectOfType<GameManager>().InstantiateTower(transform.position);
-    }
-
-    private void OnMouseUp() {
-        Debug.Log("Let go at " + gameObject.name);
-    }
-
-    private void OnMouseExit() {
-        
+        FindObjectOfType<GameManager>().BuildTower(transform.position);
     }
 
     // Start is called before the first frame update

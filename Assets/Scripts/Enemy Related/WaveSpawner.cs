@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class WaveSpawner : MonoBehaviour
 
     private void Start() {
         currentWave = waves[waveIndex];
+    }
+
+    public void StartWave() {
         StartCoroutine(SpawnWave(currentWave));
     }
 
@@ -35,6 +39,16 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(wave.GetGroupAtIndex(groupIndex).CooldownForNextGroup);
             groupIndex++;
             
+        }
+
+        waveIndex++;
+
+        try {
+            currentWave = waves[waveIndex];
+        }
+        catch (Exception e) {
+            // spawned all waves
+            Debug.Log(e.Message);
         }
     }
 

@@ -6,22 +6,18 @@ using System;
 
 public class Tower : MonoBehaviour
 {
-    Animator anim;
-    [SerializeField] List<GameObject> enemiesInRange;
-    GameObject attackTarget;
+    protected Animator anim;
+    [SerializeField] protected List<GameObject> enemiesInRange;
+    protected GameObject attackTarget;
 
-    // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         anim = GetComponent<Animator>();
         enemiesInRange = new List<GameObject>();
-
-        StartCoroutine(Attack());
-
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if (anim.GetBool("Attacking") && attackTarget != null) {
             transform.rotation = Quaternion.LookRotation(attackTarget.transform.position - transform.position);
@@ -45,43 +41,5 @@ public class Tower : MonoBehaviour
         }
     }
 
-    IEnumerator Attack() {
-        while (true) {
-            if (enemiesInRange.Count != 0) {
-                //yield return new WaitForSeconds(anim.GetCurrentAnimatorClipInfo(0)[0].clip.length);
-
-
-
-                if (enemiesInRange[0] != null) {
-                    attackTarget = enemiesInRange[0];
-                    yield return new WaitForSeconds(1.4f);
-
-                    try {
-                        if (attackTarget != null) {
-
-                            if (attackTarget.GetComponent<Health>().WillDieFromDamage(25)) {
-                                enemiesInRange.Remove(attackTarget);
-                                attackTarget.GetComponent<Health>().ChangeHP(-25);
-                            }
-                            else {
-                                attackTarget.GetComponent<Health>().ChangeHP(-25);
-                            }
-                        }
-                        else {
-                            enemiesInRange.Remove(attackTarget);
-                        }
-                    }
-                    catch (Exception e) {
-                        print(e.Message);
-                    }
-                }
-
-
-            }
-            else {
-                anim.SetBool("Attacking", false);
-                yield return new WaitUntil(() => enemiesInRange.Count > 0);
-            }
-        }
-    }
+    
 }
