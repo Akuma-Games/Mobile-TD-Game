@@ -53,13 +53,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        AudioSource[] sounds = FindObjectsOfType<AudioSource>();
+        /*AudioSource[] sounds = FindObjectsOfType<AudioSource>();
         foreach(AudioSource sound in sounds)
         {
             sound.volume = GameSettings.soundVolume;
         }
         GetComponent<AudioSource>().volume = GameSettings.musicVolume;
-
+        */
         towerCollection.Initialize();
         goldAmount.text = gold.ToString();
 
