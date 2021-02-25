@@ -9,7 +9,7 @@ public class Arrow : MonoBehaviour
     Vector3 enemyPositionOffset = new Vector3(0, 1.1f, 0);
 
     Vector3 targetPosition;
-    float radius = 0.001f;
+    float radius = 0.01f;
     float radiusSq;
 
     Vector3 origin, currentPosition;
