@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager m_Instance;
     [SerializeField] TMP_Text goldAmount;
+    [SerializeField] TMP_Text stoneAmount;
+    [SerializeField] TMP_Text woodAmount;
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text waveText;
     [SerializeField] GameObject gameOverScreen;
@@ -68,8 +70,19 @@ public class GameManager : MonoBehaviour
 
     public void collectGold(int amount)
     {
-        gold += 10;
+        gold += amount;
         goldAmount.text = gold.ToString();
+    }
+
+    public void collectStone(int amount)
+    {
+        stone += amount;
+        stoneAmount.text = stone.ToString();
+    }
+    public void collectWood(int amount)
+    {
+        wood += amount;
+        woodAmount.text = wood.ToString();
     }
 
     public void Replay()

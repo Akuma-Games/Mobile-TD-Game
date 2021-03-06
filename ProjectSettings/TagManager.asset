@@ -7,6 +7,11 @@ TagManager:
   - Enemy
   - Buildable
   - AudioManager
+  - SoundSlider
+  - MusicSlider
+  - Gold
+  - Wood
+  - Stone
   layers:
   - Default
   - TransparentFX

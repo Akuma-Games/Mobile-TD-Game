@@ -22,8 +22,19 @@ public class PickUpScript : MonoBehaviour
             if(Input.GetMouseButtonDown(0))
             {
                 GetComponent<AudioSource>().Play();
-                GameManager.Instance.collectGold(10);
-                Destroy(gameObject, 0.3f);
+                switch (this.tag)
+                {
+                    case "Gold":
+                        GameManager.Instance.collectGold(10);
+                        break;
+                    case "Stone":
+                        GameManager.Instance.collectStone(Random.Range(8, 15));
+                        break;
+                    case "Wood":
+                        GameManager.Instance.collectWood(Random.Range(8, 15));
+                        break;
+                }
+                Destroy(this.gameObject, 0.3f);
             }
         }
     }
