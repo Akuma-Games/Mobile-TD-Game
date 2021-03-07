@@ -27,7 +27,8 @@ public class Health : MonoBehaviour
         OnHealthChanged(currentHPPct);
 
         if (currentHealth <= 0) {
-            Instantiate(coinPrefab, transform.position, transform.rotation);
+            //Instantiate(coinPrefab, transform.position, transform.rotation);
+            ResourceManager.Instance.GetResource(ResourceType.GOLD, transform.position);
             StartCoroutine(GetComponent<Enemy>().Die());
         }
     }
@@ -35,8 +36,6 @@ public class Health : MonoBehaviour
     public bool WillDieFromDamage(int amt) {
         return currentHealth - amt <= 0;
     }
-
-    
 
     // Update is called once per frame
     void Update()

@@ -22,19 +22,22 @@ public class PickUpScript : MonoBehaviour
             if(Input.GetMouseButtonDown(0))
             {
                 GetComponent<AudioSource>().Play();
+
                 switch (this.tag)
                 {
                     case "Gold":
-                        GameManager.Instance.collectGold(10);
+                        ResourceManager.Instance.CollectResource(ResourceType.GOLD, 10);
+                        ResourceManager.Instance.ReturnResource(ResourceType.GOLD, this.gameObject);
                         break;
                     case "Stone":
-                        GameManager.Instance.collectStone(Random.Range(8, 15));
+                        ResourceManager.Instance.CollectResource(ResourceType.STONE, Random.Range(8, 15));
+                        ResourceManager.Instance.ReturnResource(ResourceType.STONE, this.gameObject);
                         break;
                     case "Wood":
-                        GameManager.Instance.collectWood(Random.Range(8, 15));
+                        ResourceManager.Instance.CollectResource(ResourceType.WOOD, Random.Range(8, 15));
+                        ResourceManager.Instance.ReturnResource(ResourceType.WOOD, this.gameObject);
                         break;
                 }
-                Destroy(this.gameObject, 0.3f);
             }
         }
     }

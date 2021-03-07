@@ -12,9 +12,7 @@ public enum TowerType
 public class GameManager : MonoBehaviour
 {
     private static GameManager m_Instance;
-    [SerializeField] TMP_Text goldAmount;
-    [SerializeField] TMP_Text stoneAmount;
-    [SerializeField] TMP_Text woodAmount;
+
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text waveText;
     [SerializeField] GameObject gameOverScreen;
@@ -30,9 +28,6 @@ public class GameManager : MonoBehaviour
 
     private int score = 0;
     private int wave = 1;
-    private int gold = 90;
-    private int stone = 0;
-    private int wood = 0;
 
     public static GameManager Instance
     {
@@ -55,34 +50,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        /*AudioSource[] sounds = FindObjectsOfType<AudioSource>();
-        foreach(AudioSource sound in sounds)
-        {
-            sound.volume = GameSettings.soundVolume;
-        }
-        GetComponent<AudioSource>().volume = GameSettings.musicVolume;
-        */
         towerCollection.Initialize();
-        goldAmount.text = gold.ToString();
 
         EnemiesInTheScene = 0;
-    }
 
-    public void collectGold(int amount)
-    {
-        gold += amount;
-        goldAmount.text = gold.ToString();
-    }
-
-    public void collectStone(int amount)
-    {
-        stone += amount;
-        stoneAmount.text = stone.ToString();
-    }
-    public void collectWood(int amount)
-    {
-        wood += amount;
-        woodAmount.text = wood.ToString();
+        StartCoroutine(GenerateWood());
+        StartCoroutine(GenerateStone());
     }
 
     public void Replay()
@@ -105,26 +78,16 @@ public class GameManager : MonoBehaviour
     public void BuildTower(Vector3 pos) {
         int towerCost = towerCollection.GetTowerCost(CurrentTowerBuilding);
 
-        if (gold < towerCost) {
+        if (ResourceManager.Instance.gold < towerCost) {
             Debug.Log("Not enough money");
             return;
         }
 
-        gold -= towerCost;
-        goldAmount.text = gold.ToString();
+        ResourceManager.Instance.gold -= towerCost;
+        ResourceManager.Instance.goldAmount.text = ResourceManager.Instance.gold.ToString();
         Vector3 towerOffset = new Vector3(0, 1.1f, 0);
         pos += towerOffset;
         Instantiate(towerCollection[CurrentTowerBuilding], pos, Quaternion.identity);
-    }
-
-    // Temporary function
-    public void UseGold()
-    {
-        if (gold > 0)
-        {
-            gold--;
-            goldAmount.text = gold.ToString();
-        }
     }
 
     public void EnemyDie() {
@@ -134,5 +97,19 @@ public class GameManager : MonoBehaviour
             // wave complete
             startWaveButton.SetActive(true);
         }
+    }
+
+    IEnumerator GenerateStone()
+    {
+        yield return new WaitForSeconds(6.0f);
+        ResourceManager.Instance.GetResource(ResourceType.STONE, new Vector3(Random.Range(0.2f, 2.2f), 2.5f, Random.Range(-10.0f, -12.5f)));
+        StartCoroutine(GenerateStone());
+    }
+
+    IEnumerator GenerateWood()
+    {
+        yield return new WaitForSeconds(5.0f);
+        ResourceManager.Instance.CollectResource(ResourceType.WOOD, Random.Range(6, 12));
+        StartCoroutine(GenerateWood());
     }
 }
