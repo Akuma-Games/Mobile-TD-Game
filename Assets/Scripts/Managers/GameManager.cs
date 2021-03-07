@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
     private int enemiesInTheScene = 0;
     public int EnemiesInTheScene { get; set; }
 
-    private int score = 0;
-    private int wave = 1;
+    public int score = 0;
+    public int wave = 1;
 
     public static GameManager Instance
     {
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         return towerCollection[towerType];
     }
 
-    public void BuildTower(Vector3 pos) {
+    public void BuildTower(Vector3 pos, int tileIndex) {
         int towerCost = towerCollection.GetTowerCost(CurrentTowerBuilding);
 
         if (ResourceManager.Instance.gold < towerCost) {

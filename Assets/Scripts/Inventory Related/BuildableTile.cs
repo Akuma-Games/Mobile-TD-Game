@@ -5,9 +5,11 @@ using UnityEngine.EventSystems;
 
 public class BuildableTile : MonoBehaviour, IDropHandler
 {
+    public int index = 0;
+
     public void OnDrop(PointerEventData eventData) {
         Debug.Log("OnDrop: " + name);
-        FindObjectOfType<GameManager>().BuildTower(transform.position);
+        FindObjectOfType<GameManager>().BuildTower(transform.position, index);
     }
 
     // Start is called before the first frame update
