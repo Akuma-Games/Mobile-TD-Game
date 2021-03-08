@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d5081e85411a442b0dddaafb5ec964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickup_sound: {fileID: 5515060339526753762}
 --- !u!135 &-4502952036864462669
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -121,7 +122,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ec6d31d06c51741429effc36777b0702, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

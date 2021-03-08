@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
 
     private bool dead;
 
+    [SerializeField] AudioSource DeathSound;
+
     private void Start() {
         targetWaypoint = Waypoints.points[0];
 
@@ -48,6 +50,7 @@ public class Enemy : MonoBehaviour
     }
 
     public IEnumerator Die() {
+        DeathSound.Play();
         GetComponent<Animator>().SetTrigger("Die");
         dead = true;
         yield return new WaitForSeconds(GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.length);

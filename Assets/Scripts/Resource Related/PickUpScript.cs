@@ -12,16 +12,19 @@ public class PickUpScript : MonoBehaviour
 
     Ray ray;
     RaycastHit hit;
+
+    [SerializeField] AudioSource pickup_sound;
      
     void Update()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        pickup_sound.volume = GameSettings.soundVolume;
 
         if(Physics.Raycast(ray, out hit))
         {
             if(Input.GetMouseButtonDown(0))
             {
-                GetComponent<AudioSource>().Play();
+                pickup_sound.Play();
 
                 switch (this.tag)
                 {

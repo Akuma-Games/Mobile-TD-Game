@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+
         towerCollection.Initialize();
 
         EnemiesInTheScene = 0;

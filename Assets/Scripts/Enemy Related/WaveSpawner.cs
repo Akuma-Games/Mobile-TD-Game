@@ -9,6 +9,7 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] Transform spawnPosition;
 
     [SerializeField] Wave currentWave;
+    [SerializeField] AudioSource spawnSound;
 
     int waveIndex = 0;
 
@@ -30,6 +31,7 @@ public class WaveSpawner : MonoBehaviour
 
 
             while (wave.GetGroupAtIndex(groupIndex).EnemyCount - enemySpawned > 0) {
+                spawnSound.Play();
                 GameObject enemy = Instantiate(enemyToSpawn, spawnPosition.position, Quaternion.identity);
                 enemy.name = groupIndex + " " + enemySpawned;
                 enemySpawned++;
