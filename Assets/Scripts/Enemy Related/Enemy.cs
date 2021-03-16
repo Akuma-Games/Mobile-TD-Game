@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
 
     private bool dead;
 
+    private bool blocked;
+    public bool Blocked { set { blocked = value; } }
+
     [SerializeField] AudioSource DeathSound;
 
     private void Start() {
@@ -24,7 +27,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void Update() {
-        if (!dead) {
+        if (!dead && !blocked) {
             Vector3 movePos = Vector3.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
             Vector3 deltaPos = movePos - transform.position;
 

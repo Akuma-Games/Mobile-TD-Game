@@ -24,14 +24,14 @@ public class Tower : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
+    public virtual void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Enemy")) {
             enemiesInRange.Add(other.gameObject);
             anim.SetBool("Attacking", true);
         }
     }
 
-    private void OnTriggerExit(Collider other) {
+    public virtual void OnTriggerExit(Collider other) {
         if (other.gameObject.CompareTag("Enemy")) {
             enemiesInRange.Remove(other.gameObject);
 
