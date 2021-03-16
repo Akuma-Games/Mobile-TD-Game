@@ -5777,7 +5777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5087372192193024638, guid: 1fc031a739443ae4e833b1f5ce0cb8c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.2183247
+      value: -6.03
       objectReference: {fileID: 0}
     - target: {fileID: 5087372192193024638, guid: 1fc031a739443ae4e833b1f5ce0cb8c4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25128,7 +25128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 11400000, guid: 5bc48da6cffa61d46850fd2d2ff9ba2d, type: 2}
+  - {fileID: 11400000, guid: 8c6e18f243d6c4b4ebe5b50a44e8b025, type: 2}
   - {fileID: 11400000, guid: 8c6e18f243d6c4b4ebe5b50a44e8b025, type: 2}
   spawnPosition: {fileID: 2023595880}
   currentWave: {fileID: 0}
