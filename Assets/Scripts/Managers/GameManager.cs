@@ -6,7 +6,8 @@ using TMPro;
 
 public enum TowerType
 {
-    ARCHER
+    ARCHER,
+    NONE
 }
 
 public class GameManager : MonoBehaviour
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     public int score = 0;
     public int wave = 1;
+
+    private bool isPaused = false;
 
     public static GameManager Instance
     {
@@ -76,7 +79,7 @@ public class GameManager : MonoBehaviour
         return towerCollection[towerType];
     }
 
-    public void BuildTower(Vector3 pos, int tileIndex) {
+    /*public void BuildTower(Vector3 pos, int tileIndex) {
         int towerCost = towerCollection.GetTowerCost(CurrentTowerBuilding);
 
         if (ResourceManager.Instance.gold < towerCost) {
@@ -89,6 +92,23 @@ public class GameManager : MonoBehaviour
         Vector3 towerOffset = new Vector3(0, 1.1f, 0);
         pos += towerOffset;
         Instantiate(towerCollection[CurrentTowerBuilding], pos, Quaternion.identity);
+
+        FindObjectOfType<GameSaver>().towerData.existingTowers[tileIndex] = TowerType.ARCHER;
+    }*/
+
+    public void BuildTower(BuildableTile tile) {
+        int towerCost = towerCollection.GetTowerCost(CurrentTowerBuilding);
+
+        if (ResourceManager.Instance.gold < towerCost) {
+            Debug.Log("Not enough money");
+            return;
+        }
+
+        ResourceManager.Instance.gold -= towerCost;
+        ResourceManager.Instance.goldAmount.text = ResourceManager.Instance.gold.ToString();
+        Vector3 towerOffset = new Vector3(0, 1.1f, 0) + tile.transform.position;
+        Instantiate(towerCollection[CurrentTowerBuilding], towerOffset, Quaternion.identity);
+        tile.currentTower = TowerType.ARCHER;
     }
 
     public void EnemyDie() {
@@ -112,5 +132,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         ResourceManager.Instance.CollectResource(ResourceType.WOOD, Random.Range(6, 12));
         StartCoroutine(GenerateWood());
+    }
+
+    public void Pause_Resume()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0.0f : 1.0f;
     }
 }

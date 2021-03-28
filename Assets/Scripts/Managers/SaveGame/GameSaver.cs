@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameSaver : MonoBehaviour
 {
+    public TowerDataSO towerData;
+    [SerializeField] private TowerCollection towerCollection;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,19 @@ public class GameSaver : MonoBehaviour
         PlayerPrefs.SetInt("Wood", ResourceManager.Instance.wood);
 
         // Tower
+        BuildableTile[] allTiles = FindObjectsOfType<BuildableTile>();
+        foreach (BuildableTile tile in allTiles)
+        {
+            towerData.existingTowers[tile.index] = tile.currentTower;
+        }
+
+        for (int i = 0; i < towerData.existingTowers.Length; i++)
+        {
+            string slotName = "Tile" + i;
+            PlayerPrefs.SetInt(slotName, (int)towerData.existingTowers[i]);
+        }
+
+        PlayerPrefs.Save();
     }
 
     public void Load()
@@ -40,5 +56,17 @@ public class GameSaver : MonoBehaviour
         ResourceManager.Instance.woodAmount.text = ResourceManager.Instance.wood.ToString();
 
         // Tower
+        BuildableTile[] allTiles = FindObjectsOfType<BuildableTile>();
+        foreach (BuildableTile tile in allTiles)
+        {
+            string slotName = "Tile" + tile.index;
+            tile.currentTower = (TowerType)PlayerPrefs.GetInt(slotName);
+
+            if (tile.currentTower != TowerType.NONE)
+            {
+                Vector3 towerOffset = new Vector3(0, 1.1f, 0) + tile.transform.position;
+                Instantiate(towerCollection[tile.currentTower], towerOffset, Quaternion.identity);
+            }
+        }
     }
 }
