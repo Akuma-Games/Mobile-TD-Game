@@ -164,4 +164,20 @@ public class ResourceManager : MonoBehaviour
                 break;
         }
     }
+
+    public void CollectAllGold()
+    {
+        PickUpScript[] pickups = FindObjectsOfType<PickUpScript>();
+        foreach(PickUpScript pickup in pickups)
+        {
+            if (pickup.gameObject.tag == "Gold")
+            {
+                if (pickup.gameObject.activeSelf)
+                {
+                    CollectResource(ResourceType.GOLD, 10);
+                    ReturnResource(ResourceType.GOLD, pickup.gameObject);
+                }
+            }
+        }
+    }
 }

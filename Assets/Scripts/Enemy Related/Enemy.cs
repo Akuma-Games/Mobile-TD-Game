@@ -55,6 +55,8 @@ public class Enemy : MonoBehaviour
     public IEnumerator Die() {
         DeathSound.Play();
         GetComponent<Animator>().SetTrigger("Die");
+        if (!dead)
+            ResourceManager.Instance.GetResource(ResourceType.GOLD, transform.position);
         dead = true;
         yield return new WaitForSeconds(GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.length);
         GameManager.Instance.EnemyDie();

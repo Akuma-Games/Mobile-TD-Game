@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0) {
             //Instantiate(coinPrefab, transform.position, transform.rotation);
-            ResourceManager.Instance.GetResource(ResourceType.GOLD, transform.position);
+            
             StartCoroutine(GetComponent<Enemy>().Die());
         }
     }
