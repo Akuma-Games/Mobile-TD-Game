@@ -5,7 +5,8 @@ using UnityEngine;
 public class IsometricCameraController : MonoBehaviour
 {
 
-    [SerializeField] public Joystick cameraController;
+    [SerializeField] public Joystick cameraControllerR;
+    [SerializeField] public Joystick cameraControllerL;
 
     [SerializeField] private float panSpeed = 1f;
     [SerializeField] private float panSpeedJoystick = 0.05f;
@@ -95,7 +96,7 @@ public class IsometricCameraController : MonoBehaviour
         if (ControlsScript.toggled1 == true)
         {
             //joystick controls
-            if (cameraController.Vertical > 0)
+            if (cameraControllerR.Vertical > 0)
             {
                 if (!((newPosition + transform.up * panSpeed - startingPosition).magnitude > maxUpDistance))
                 {
@@ -103,7 +104,7 @@ public class IsometricCameraController : MonoBehaviour
                 }
             }
 
-            else if (cameraController.Vertical < 0)
+            else if (cameraControllerR.Vertical < 0)
             {
                 if (!((newPosition - transform.up * panSpeed - startingPosition).magnitude > maxDownDistance))
                 {
@@ -111,14 +112,14 @@ public class IsometricCameraController : MonoBehaviour
                 }
             }
 
-            if (cameraController.Horizontal > 0)
+            if (cameraControllerR.Horizontal > 0)
             {
                 if (!((newPosition + transform.right * panSpeed - startingPosition).magnitude > maxRightDistance))
                 {
                     newPosition += transform.right * panSpeedJoystick;
                 }
             }
-            else if (cameraController.Horizontal < 0)
+            else if (cameraControllerR.Horizontal < 0)
             {
                 if (!((newPosition - transform.right * panSpeed - startingPosition).magnitude > maxLeftDistance))
                 {
@@ -127,7 +128,42 @@ public class IsometricCameraController : MonoBehaviour
             }
         }
 
-        
+        if (ControlsScript.toggled2 == true)
+        {
+            //joystick controls
+            if (cameraControllerL.Vertical > 0)
+            {
+                if (!((newPosition + transform.up * panSpeed - startingPosition).magnitude > maxUpDistance))
+                {
+                    newPosition += transform.up * panSpeedJoystick;
+                }
+            }
+
+            else if (cameraControllerL.Vertical < 0)
+            {
+                if (!((newPosition - transform.up * panSpeed - startingPosition).magnitude > maxDownDistance))
+                {
+                    newPosition -= transform.up * panSpeedJoystick;
+                }
+            }
+
+            if (cameraControllerL.Horizontal > 0)
+            {
+                if (!((newPosition + transform.right * panSpeed - startingPosition).magnitude > maxRightDistance))
+                {
+                    newPosition += transform.right * panSpeedJoystick;
+                }
+            }
+            else if (cameraControllerL.Horizontal < 0)
+            {
+                if (!((newPosition - transform.right * panSpeed - startingPosition).magnitude > maxLeftDistance))
+                {
+                    newPosition -= transform.right * panSpeedJoystick;
+                }
+            }
+        }
+
+
 
 
 
