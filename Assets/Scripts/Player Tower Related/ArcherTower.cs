@@ -26,7 +26,6 @@ public class ArcherTower : Tower
         while (true) {
             if (enemiesInRange.Count != 0) {
                 
-
                 if (enemiesInRange[0] != null) {
                     attackTarget = enemiesInRange[0];
                     yield return new WaitForSeconds(1.4f);
@@ -53,8 +52,6 @@ public class ArcherTower : Tower
                         print(e.Message);
                     }
                 }
-
-
             }
             else {
                 anim.SetBool("Attacking", false);

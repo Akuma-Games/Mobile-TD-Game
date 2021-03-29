@@ -8,6 +8,8 @@ public class MeleeTower : Tower
 {
     [SerializeField] int enemiesBlocked = 2;
 
+    [SerializeField] AudioSource swordAtk;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -28,11 +30,12 @@ public class MeleeTower : Tower
 
                 if (enemiesInRange[0] != null) {
                     attackTarget = enemiesInRange[0];
+                    yield return new WaitForSeconds(0.05f);
+                    swordAtk.Play();
                     yield return new WaitForSeconds(1.3333f);
 
                     try {
                         if (attackTarget != null) {
-
                             if (attackTarget.GetComponent<Health>().WillDieFromDamage(25)) {
                                 enemiesInRange.Remove(attackTarget);
                                 attackTarget.GetComponent<Health>().ChangeHP(-25);
