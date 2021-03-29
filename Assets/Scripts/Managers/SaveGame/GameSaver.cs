@@ -10,7 +10,11 @@ public class GameSaver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (MainMenu.loadingGameFromMenu)
+        {
+            Load();
+            MainMenu.loadingGameFromMenu = false;
+        }
     }
 
     // Update is called once per frame
@@ -57,6 +61,12 @@ public class GameSaver : MonoBehaviour
 
         // Tower
         BuildableTile[] allTiles = FindObjectsOfType<BuildableTile>();
+
+        foreach(Tower tower in FindObjectsOfType<Tower>())
+        {
+            Destroy(tower.gameObject);
+        }
+
         foreach (BuildableTile tile in allTiles)
         {
             string slotName = "Tile" + tile.index;
