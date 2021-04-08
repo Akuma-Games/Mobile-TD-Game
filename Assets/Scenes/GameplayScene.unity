@@ -6112,7 +6112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5087372192193024638, guid: 1fc031a739443ae4e833b1f5ce0cb8c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.93
+      value: 7.96
       objectReference: {fileID: 0}
     - target: {fileID: 5087372192193024638, guid: 1fc031a739443ae4e833b1f5ce0cb8c4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6149,6 +6149,10 @@ PrefabInstance:
     - target: {fileID: 5087372192193024638, guid: 1fc031a739443ae4e833b1f5ce0cb8c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087372193670400818, guid: 1fc031a739443ae4e833b1f5ce0cb8c4, type: 3}
+      propertyPath: maxHealth
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fc031a739443ae4e833b1f5ce0cb8c4, type: 3}
@@ -26082,7 +26086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 11400000, guid: 8c6e18f243d6c4b4ebe5b50a44e8b025, type: 2}
+  - {fileID: 11400000, guid: 5bc48da6cffa61d46850fd2d2ff9ba2d, type: 2}
   - {fileID: 11400000, guid: 8c6e18f243d6c4b4ebe5b50a44e8b025, type: 2}
   spawnPosition: {fileID: 2023595880}
   currentWave: {fileID: 0}

@@ -30,7 +30,6 @@ public class MeleeTower : Tower
 
                 if (enemiesInRange[0] != null) {
                     attackTarget = enemiesInRange[0];
-                    yield return new WaitForSeconds(0.05f);
                     swordAtk.Play();
                     yield return new WaitForSeconds(1.3333f);
 
@@ -68,7 +67,14 @@ public class MeleeTower : Tower
         if (other.gameObject.CompareTag("Enemy")) {
             if (enemiesInRange.Count <= enemiesBlocked) {
                 other.gameObject.GetComponent<Enemy>().Blocked = true;
+                other.gameObject.GetComponent<Enemy>().Blockedby = gameObject;
             }
         }
+    }
+
+    public IEnumerator Die() {
+        anim.SetTrigger("Die");
+        yield return new WaitForSeconds(GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.length / 2);
+        Destroy(gameObject);
     }
 }

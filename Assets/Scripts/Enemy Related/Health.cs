@@ -28,8 +28,13 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0) {
             //Instantiate(coinPrefab, transform.position, transform.rotation);
-            
-            StartCoroutine(GetComponent<Enemy>().Die());
+
+            if (GetComponent<Enemy>() != null) {
+                StartCoroutine(GetComponent<Enemy>().Die());
+            }
+            else {
+                StartCoroutine(GetComponent<MeleeTower>().Die());
+            }
         }
     }
 

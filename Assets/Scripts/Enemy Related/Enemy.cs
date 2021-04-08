@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
+    protected Animator anim;
+
     [SerializeField] float speed = 10f;
 
     private Transform targetWaypoint;
@@ -13,20 +15,25 @@ public class Enemy : MonoBehaviour
 
     private bool dead;
 
-    private bool blocked;
+    protected bool blocked;
     public bool Blocked { set { blocked = value; } }
+
+    protected GameObject blockedBy;
+    public GameObject Blockedby {  set { blockedBy = value; } }
 
     [SerializeField] AudioSource DeathSound;
 
-    private void Start() {
+    public virtual void Start() {
         targetWaypoint = Waypoints.points[0];
 
         dead = false;
 
         GameManager.Instance.EnemiesInTheScene++;
+
+        anim = GetComponent<Animator>();
     }
 
-    private void Update() {
+    public virtual void Update() {
         if (!dead && !blocked) {
             Vector3 movePos = Vector3.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
             Vector3 deltaPos = movePos - transform.position;

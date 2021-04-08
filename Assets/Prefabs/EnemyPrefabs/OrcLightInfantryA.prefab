@@ -1140,8 +1140,8 @@ GameObject:
   - component: {fileID: 3717077618845927172}
   - component: {fileID: 3793443203149877053}
   - component: {fileID: 3793443203074489146}
-  - component: {fileID: 3793443203074489125}
   - component: {fileID: -3463636487153934108}
+  - component: {fileID: 2361137506831644935}
   m_Layer: 0
   m_Name: OrcLightInfantryA
   m_TagString: Enemy
@@ -1218,20 +1218,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: -0.06}
---- !u!114 &3793443203074489125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3717077618836419762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56ead2f3d4bd7504eab758075158e713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  DeathSound: {fileID: -3463636487153934108}
 --- !u!82 &-3463636487153934108
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1328,6 +1314,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2361137506831644935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3717077618836419762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 939be7f96104d674c8001d874f9a9eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  DeathSound: {fileID: -3463636487153934108}
 --- !u!1 &3717077618836419764
 GameObject:
   m_ObjectHideFlags: 0
