@@ -798,7 +798,7 @@ GameObject:
   - component: {fileID: 1635073306737163222}
   m_Layer: 0
   m_Name: WoodElfArcher
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

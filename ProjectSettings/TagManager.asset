@@ -12,6 +12,7 @@ TagManager:
   - Gold
   - Wood
   - Stone
+  - Tower
   layers:
   - Default
   - TransparentFX

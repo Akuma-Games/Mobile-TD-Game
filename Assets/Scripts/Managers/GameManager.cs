@@ -7,6 +7,7 @@ using TMPro;
 public enum TowerType
 {
     ARCHER,
+    TANK,
     NONE
 }
 
