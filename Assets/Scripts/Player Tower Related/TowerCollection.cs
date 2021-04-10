@@ -12,15 +12,15 @@ public class TowerCollection : ScriptableObject
     {
         public GameObject prefab;
         public TowerType towerType;
-        public int towerCost;
+        public Vector3Int towerCost;
 
-        public int GetCost() {
+        public Vector3Int GetCost() {
             return towerCost;
         }
     }
 
     private Dictionary<TowerType, GameObject> prefabDict;
-    private Dictionary<TowerType, int> costDict;
+    private Dictionary<TowerType, Vector3Int> costDict;
     public TowerPrefab[] towerPrefabs;
 
     public GameObject this[TowerType type] {
@@ -29,8 +29,9 @@ public class TowerCollection : ScriptableObject
         }
     }
     
-    public int GetTowerCost(TowerType type) {
+    public Vector3Int GetTowerCost(TowerType type) {
         return costDict[type];
+
     }
 
     public void Initialize() {
@@ -41,7 +42,7 @@ public class TowerCollection : ScriptableObject
         if (prefabDict != null)
             return;
         prefabDict = new Dictionary<TowerType, GameObject>();
-        costDict = new Dictionary<TowerType, int>();
+        costDict = new Dictionary<TowerType, Vector3Int>();
         foreach (var tower in towerPrefabs) {
             prefabDict[tower.towerType] = tower.prefab;
             costDict[tower.towerType] = tower.towerCost;

@@ -8,6 +8,7 @@ public enum TowerType
 {
     ARCHER,
     TANK,
+    HEALER,
     NONE
 }
 
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] TowerCollection towerCollection;
 
+    [SerializeField] TMP_Text costText;
     [SerializeField] GameObject startWaveButton;
 
     private int enemiesInTheScene = 0;
@@ -96,20 +98,39 @@ public class GameManager : MonoBehaviour
 
         FindObjectOfType<GameSaver>().towerData.existingTowers[tileIndex] = TowerType.ARCHER;
     }*/
-
+    public void SetCostText()
+    {
+        int goldCost = towerCollection.GetTowerCost(CurrentTowerBuilding).x;
+        int stoneCost = towerCollection.GetTowerCost(CurrentTowerBuilding).y;
+        int woodCost = towerCollection.GetTowerCost(CurrentTowerBuilding).z;
+        costText.SetText(goldCost + "\t" + stoneCost + "\t" + woodCost);
+    }
     public void BuildTower(BuildableTile tile) {
-        int towerCost = towerCollection.GetTowerCost(CurrentTowerBuilding);
+        Vector3Int towerCost = towerCollection.GetTowerCost(CurrentTowerBuilding);
 
-        if (ResourceManager.Instance.gold < towerCost) {
-            Debug.Log("Not enough money");
+        if (ResourceManager.Instance.gold < towerCost.x) {
+            Debug.Log("Not enough gold");
+            return;
+        }
+        if(ResourceManager.Instance.wood < towerCost.y)
+        {
             return;
         }
 
-        ResourceManager.Instance.gold -= towerCost;
+        if(ResourceManager.Instance.stone < towerCost.z)
+        {
+            return;
+        }
+        ResourceManager.Instance.gold -= towerCost.x;
+        ResourceManager.Instance.wood -= towerCost.y;
+        ResourceManager.Instance.stone -= towerCost.z;
         ResourceManager.Instance.goldAmount.text = ResourceManager.Instance.gold.ToString();
+        ResourceManager.Instance.woodAmount.text = ResourceManager.Instance.wood.ToString();
+        ResourceManager.Instance.stoneAmount.text = ResourceManager.Instance.stone.ToString();
         Vector3 towerOffset = new Vector3(0, 1.1f, 0) + tile.transform.position;
+        //insert some kind of validation for tower types here maybe?
         Instantiate(towerCollection[CurrentTowerBuilding], towerOffset, Quaternion.identity);
-        tile.currentTower = TowerType.ARCHER;
+       // tile.currentTower = towerCollection[Cu;
     }
 
     public void EnemyDie() {
