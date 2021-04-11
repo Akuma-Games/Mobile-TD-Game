@@ -15,6 +15,9 @@ public class Enemy : MonoBehaviour
 
     private bool dead;
 
+    protected bool unblockable = false;
+    public bool Unblockable { get { return unblockable; } }
+
     protected bool blocked;
     public bool Blocked { set { blocked = value; } }
 

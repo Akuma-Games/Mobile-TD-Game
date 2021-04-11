@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave1
   m_EditorClassIdentifier: 
   enemyGroups:
-  - enemyPrefab: {fileID: 3717077618836419762, guid: 6fda0c7b5b56e464f80caa3941e13939, type: 3}
+  - enemyPrefab: {fileID: 1983439885570654889, guid: c5c3046770e5eea48b005d63413858a9, type: 3}
     enemyCount: 1
     enemyRate: 2
     cooldownForNextGroup: 3

@@ -65,6 +65,9 @@ public class MeleeTower : Tower
         Debug.Log("im here now");
 
         if (other.gameObject.CompareTag("Enemy")) {
+            if (other.gameObject.GetComponent<Enemy>().Unblockable)
+                return;
+
             if (enemiesInRange.Count <= enemiesBlocked) {
                 other.gameObject.GetComponent<Enemy>().Blocked = true;
                 other.gameObject.GetComponent<Enemy>().Blockedby = gameObject;
