@@ -19,6 +19,6 @@ MonoBehaviour:
   - prefab: {fileID: 5087372192192778710, guid: 1fc031a739443ae4e833b1f5ce0cb8c4, type: 3}
     towerType: 1
     towerCost: {x: 20, y: 40, z: 30}
-  - prefab: {fileID: 5087372192192778710, guid: 1fc031a739443ae4e833b1f5ce0cb8c4, type: 3}
+  - prefab: {fileID: 621878610999416083, guid: 7aaa8f3382625714e9409a3344b8cd6f, type: 3}
     towerType: 2
     towerCost: {x: 40, y: 40, z: 40}
