@@ -43,7 +43,7 @@ public class Health : MonoBehaviour
                 StartCoroutine(GetComponent<Enemy>().Die());
             }
             else {
-                StartCoroutine(GetComponent<MeleeTower>().Die());
+                StartCoroutine(GetComponent<Tower>().Die());
             }
         }
     }

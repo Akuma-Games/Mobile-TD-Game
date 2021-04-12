@@ -60,9 +60,15 @@ public class MeleeTower : Tower
     }
 
     public override void OnTriggerEnter(Collider other) {
+        if (other.gameObject.GetComponent<OrcArcher>()) {
+            Debug.Log("archer in range");
+            return;
+        }
         base.OnTriggerEnter(other);
 
         Debug.Log("im here now");
+        
+
 
         if (other.gameObject.CompareTag("Enemy")) {
             if (other.gameObject.GetComponent<Enemy>().Unblockable)
@@ -75,9 +81,4 @@ public class MeleeTower : Tower
         }
     }
 
-    public IEnumerator Die() {
-        anim.SetTrigger("Die");
-        yield return new WaitForSeconds(GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.length / 2);
-        Destroy(gameObject);
-    }
 }

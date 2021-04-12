@@ -40,5 +40,10 @@ public class Tower : MonoBehaviour
             //}
         }
     }
-    
+
+    public IEnumerator Die() {
+        anim.SetTrigger("Die");
+        yield return new WaitForSeconds(GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.length / 2);
+        Destroy(gameObject);
+    }
 }

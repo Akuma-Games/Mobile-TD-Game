@@ -40,14 +40,22 @@ public class Healer : Tower
                     healingTarget = PickTargetToHeal();
 
                 if (healingTarget != null) {
-                    healingTarget.GetComponent<Health>().ChangeHP(10);
-                    anim.SetBool("Healing", true);
+                    if (healingTarget.GetComponent<Health>().HealthPercentage < 1) {
+                        healingTarget.GetComponent<Health>().ChangeHP(10);
+                        anim.SetBool("Healing", true);
+                    }
                 }
                 else {
+                    alliesInRange.Remove(healingTarget);
                     anim.SetBool("Healing", false);
                 }
 
                 yield return new WaitForSeconds(1.333f);
+
+                if (healingTarget == null) {
+                     alliesInRange.Remove(healingTarget);
+                    anim.SetBool("Healing", false);
+                }
             }
             else {
                 anim.SetBool("Healing", false);
@@ -71,6 +79,7 @@ public class Healer : Tower
             }
 
             if (lowestHealthPercentage == 1) {
+                anim.SetBool("Healing", false);
                 return null;
             }
 
