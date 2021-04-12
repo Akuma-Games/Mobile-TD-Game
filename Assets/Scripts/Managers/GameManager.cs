@@ -106,6 +106,9 @@ public class GameManager : MonoBehaviour
         costText.SetText(goldCost + "\t" + stoneCost + "\t" + woodCost);
     }
     public void BuildTower(BuildableTile tile) {
+        if (tile.currentTower != TowerType.NONE)
+            return;
+    
         Vector3Int towerCost = towerCollection.GetTowerCost(CurrentTowerBuilding);
 
         if (ResourceManager.Instance.gold < towerCost.x) {
@@ -130,7 +133,7 @@ public class GameManager : MonoBehaviour
         Vector3 towerOffset = new Vector3(0, 1.1f, 0) + tile.transform.position;
         //insert some kind of validation for tower types here maybe?
         Instantiate(towerCollection[CurrentTowerBuilding], towerOffset, Quaternion.identity);
-       // tile.currentTower = towerCollection[Cu;
+        tile.currentTower = CurrentTowerBuilding;
     }
 
     public void EnemyDie() {

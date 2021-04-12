@@ -12,6 +12,8 @@ public class TowerDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
 
     [SerializeField] TowerType towerType;
 
+    [SerializeField] LayerMask layerMask;
+
     private void Awake() {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
@@ -33,6 +35,17 @@ public class TowerDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
         canvasGroup.alpha = 1;
         canvasGroup.blocksRaycasts = true;
         rectTransform.position = originalPosition;
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask);
+
+        if (hit.collider != null) {
+            Debug.Log(hit.collider.name);
+
+            FindObjectOfType<GameManager>().BuildTower(hit.collider.GetComponent<BuildableTile>());
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData) {
