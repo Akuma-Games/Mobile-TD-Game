@@ -29303,6 +29303,12 @@ MonoBehaviour:
   waves:
   - {fileID: 11400000, guid: 5bc48da6cffa61d46850fd2d2ff9ba2d, type: 2}
   - {fileID: 11400000, guid: 8c6e18f243d6c4b4ebe5b50a44e8b025, type: 2}
+  - {fileID: 11400000, guid: 86e5fcd727bddde4d95fa64f8c383676, type: 2}
+  - {fileID: 11400000, guid: 922fae286ee37644b855177450bd1d6d, type: 2}
+  - {fileID: 11400000, guid: b923bd8e4ab5fe044a20cb3d6b104e82, type: 2}
+  - {fileID: 11400000, guid: e9a6abc684fa92b4f8935e1b8ca368b0, type: 2}
+  - {fileID: 11400000, guid: e761f0047608b964f9cab87332d339c6, type: 2}
+  - {fileID: 11400000, guid: 244b45e76411867439dd6bbc696a7ec9, type: 2}
   spawnPosition: {fileID: 2023595880}
   currentWave: {fileID: 0}
   spawnSound: {fileID: 2002010991}
