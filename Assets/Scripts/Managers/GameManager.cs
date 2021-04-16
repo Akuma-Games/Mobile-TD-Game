@@ -15,7 +15,7 @@ public enum TowerType
 public class GameManager : MonoBehaviour
 {
     private static GameManager m_Instance;
-
+    public QuestManager qManager;
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text waveText;
     [SerializeField] GameObject gameOverScreen;
@@ -138,10 +138,11 @@ public class GameManager : MonoBehaviour
 
     public void EnemyDie() {
         EnemiesInTheScene--;
-
+        qManager.enemiesKilled++;
         if (EnemiesInTheScene <= 0) {
             // wave complete
             startWaveButton.SetActive(true);
+            qManager.levels++;
         }
     }
 
