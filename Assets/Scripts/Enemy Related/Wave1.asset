@@ -10,15 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6a952a682742eb48a0aab237693c089, type: 3}
-  m_Name: Wave7
+  m_Name: Wave1
   m_EditorClassIdentifier: 
   enemyGroups:
-  - enemyPrefab: {fileID: 3717077618836419762, guid: 6fda0c7b5b56e464f80caa3941e13939, type: 3}
-    enemyCount: 4
+  - enemyPrefab: {fileID: 3725707190238126734, guid: 85b416c4849349e45acff3e7d532887e, type: 3}
+    enemyCount: 1
     enemyRate: 2
-    cooldownForNextGroup: 1
-  - enemyPrefab: {fileID: 1983439885570654889, guid: c5c3046770e5eea48b005d63413858a9, type: 3}
-    enemyCount: 2
-    enemyRate: 2
-    cooldownForNextGroup: 1
+    cooldownForNextGroup: 3
   currentGroupIndex: 0
