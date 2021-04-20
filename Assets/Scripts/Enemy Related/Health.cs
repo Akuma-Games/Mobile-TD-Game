@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
     public int MaxHealth { get; }
 
     [SerializeField]
-    private GameObject coinPrefab;
+    //private GameObject coinPrefab;
     private int currentHealth;
     public int CurrentHealth { get; }
     //public delegate void OnHealthChanged();
