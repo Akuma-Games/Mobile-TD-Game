@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] TowerCollection towerCollection;
 
-    [SerializeField] TMP_Text costText;
     [SerializeField] GameObject startWaveButton;
 
     private int enemiesInTheScene = 0;
@@ -103,7 +102,7 @@ public class GameManager : MonoBehaviour
         int goldCost = towerCollection.GetTowerCost(CurrentTowerBuilding).x;
         int stoneCost = towerCollection.GetTowerCost(CurrentTowerBuilding).y;
         int woodCost = towerCollection.GetTowerCost(CurrentTowerBuilding).z;
-        costText.SetText(goldCost + "\t" + stoneCost + "\t" + woodCost);
+       // costText.SetText(goldCost + "\t" + stoneCost + "\t" + woodCost);
     }
     public void BuildTower(BuildableTile tile) {
         if (tile.currentTower != TowerType.NONE)

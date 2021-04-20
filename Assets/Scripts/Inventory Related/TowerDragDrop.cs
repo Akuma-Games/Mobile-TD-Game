@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 public class TowerDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] private Canvas canvas;
@@ -11,7 +12,6 @@ public class TowerDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     private Vector3 originalPosition;
 
     [SerializeField] TowerType towerType;
-
     [SerializeField] LayerMask layerMask;
 
     private void Awake() {
@@ -20,6 +20,10 @@ public class TowerDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
         originalPosition = rectTransform.position;
     }
 
+    void Start()
+    {
+
+    }
     public void OnBeginDrag(PointerEventData eventData) {
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
