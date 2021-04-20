@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameSceneUI : MonoBehaviour
 {
-    [SerializeField] private GameObject inventory; 
+    [SerializeField] private GameObject inventory;
+    [SerializeField] private GameObject questLog; 
 
     // Start is called before the first frame update
     void Start()
@@ -21,5 +22,10 @@ public class GameSceneUI : MonoBehaviour
     public void ToggleInventory()
     {
         inventory.SetActive(inventory.activeSelf ? false : true);        
+    }
+
+    public void ToggleQuestLog()
+    {
+        questLog.SetActive(!questLog.activeSelf);        
     }
 }

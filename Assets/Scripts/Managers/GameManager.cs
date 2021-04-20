@@ -138,11 +138,11 @@ public class GameManager : MonoBehaviour
 
     public void EnemyDie() {
         EnemiesInTheScene--;
-        qManager.enemiesKilled++;
+        qManager.KillEnemy();
         if (EnemiesInTheScene <= 0) {
             // wave complete
             startWaveButton.SetActive(true);
-            qManager.levels++;
+            qManager.CompleteWave();
         }
     }
 
