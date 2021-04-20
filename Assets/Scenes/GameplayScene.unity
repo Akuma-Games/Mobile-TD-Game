@@ -27727,8 +27727,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 1189319474}
-  goldObjectMax: 0
-  stoneObjectMax: 0
+  goldObjectMax: 20
+  stoneObjectMax: 20
   woodObjectMax: 0
   gold: 200
   stone: 200
