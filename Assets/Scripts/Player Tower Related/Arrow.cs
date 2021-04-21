@@ -35,6 +35,7 @@ public class Arrow : MonoBehaviour
     {
         if (!targetEnemy) {
             Destroy(gameObject);
+            Debug.Log("no enemy");
             return;
         }
 
@@ -46,9 +47,10 @@ public class Arrow : MonoBehaviour
         float heightOffset = arcFactor * totalDistance * Mathf.Sin(distanceTravelled * Mathf.PI / totalDistance);
         transform.position = currentPosition + new Vector3(0, 0, heightOffset);
 
-        if (direction.sqrMagnitude < radiusSq) {
-            Destroy(gameObject);
+        if (direction.sqrMagnitude < radius) {
+            this.gameObject.SetActive(false);
             targetEnemy.GetComponent<Health>().ChangeHP(-25);
+            Debug.Log("hit radius");
         }
 
     }
