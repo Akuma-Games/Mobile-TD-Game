@@ -40,8 +40,8 @@ public class QuestManager : MonoBehaviour
             questLevel_Enemy++;
             enemyTarget = questLevel_Enemy * 10;
             enemiesKilled = 0;
-            UpdateEnemyAmountText();
             questCompleteSound.Play();
+            UpdateEnemyAmountText();
         }
         else
         {
@@ -58,8 +58,8 @@ public class QuestManager : MonoBehaviour
             questLevel_Wave++;
             waveTarget = questLevel_Wave;
             wavesCompleted = 0;
-            UpdateWaveAmountText();
             questCompleteSound.Play();
+            UpdateWaveAmountText();
         }
         else
         {
