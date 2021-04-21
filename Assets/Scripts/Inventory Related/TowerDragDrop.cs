@@ -32,7 +32,8 @@ public class TowerDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     }
 
     public void OnDrag(PointerEventData eventData) {
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        //rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        rectTransform.position = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData) {
