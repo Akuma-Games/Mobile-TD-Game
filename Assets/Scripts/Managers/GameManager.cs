@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager m_Instance;
     public QuestManager qManager;
-    [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text waveText;
     [SerializeField] GameObject gameOverScreen;
 
@@ -81,7 +80,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        scoreText.text = score.ToString();
         waveText.text = wave.ToString();
         Time.timeScale = 0;
         gameOverScreen.SetActive(true);
@@ -167,6 +165,7 @@ public class GameManager : MonoBehaviour
             startWaveButton.SetActive(true);
             qManager.CompleteWave();
             currentlyHaveAWave = false;
+            wave++;
         }
     }
 
