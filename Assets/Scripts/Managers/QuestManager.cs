@@ -16,9 +16,14 @@ public class QuestManager : MonoBehaviour
 
     [SerializeField] Text enemyAmountText;
     [SerializeField] Text waveAmountText;
+
+    private AudioSource questCompleteSound;
+
     // Start is called before the first frame update
     void Start()
     {
+        questCompleteSound = GetComponent<AudioSource>();
+
         enemyTarget = questLevel_Enemy * 10;
         waveTarget = questLevel_Wave;
 
@@ -36,6 +41,7 @@ public class QuestManager : MonoBehaviour
             enemyTarget = questLevel_Enemy * 10;
             enemiesKilled = 0;
             UpdateEnemyAmountText();
+            questCompleteSound.Play();
         }
         else
         {
@@ -53,6 +59,7 @@ public class QuestManager : MonoBehaviour
             waveTarget = questLevel_Wave;
             wavesCompleted = 0;
             UpdateWaveAmountText();
+            questCompleteSound.Play();
         }
         else
         {
