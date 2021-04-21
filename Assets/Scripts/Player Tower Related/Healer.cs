@@ -25,7 +25,7 @@ public class Healer : Tower
     }
 
     public override void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Tower")) {
+        if (other.CompareTag("Tower") && !alliesInRange.Contains(other.gameObject)) {
             Debug.Log("In Range: " + other.gameObject.name);
             alliesInRange.Add(other.gameObject);
         }
