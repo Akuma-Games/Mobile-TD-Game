@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour
         Vector3 towerOffset = new Vector3(0, 1.1f, 0) + tile.transform.position;
         //insert some kind of validation for tower types here maybe?
         GameObject tower = Instantiate(towerCollection[CurrentTowerBuilding], towerOffset, Quaternion.identity);
+        tower.GetComponent<Tower>().SetTile(tile);
 
         if (CurrentTowerBuilding == TowerType.TANK) {
             Debug.Log("Currently at " + lowerBuildableTiles.IndexOf(tile.gameObject));
@@ -153,6 +154,8 @@ public class GameManager : MonoBehaviour
         }
 
         tile.currentTower = CurrentTowerBuilding;
+
+
     }
 
     public void EnemyDie() {

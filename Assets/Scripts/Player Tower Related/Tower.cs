@@ -10,6 +10,8 @@ public class Tower : MonoBehaviour
     [SerializeField] protected List<GameObject> enemiesInRange;
     protected GameObject attackTarget;
 
+    [SerializeField] BuildableTile myTile;
+
     public virtual void Start()
     {
         anim = GetComponent<Animator>();
@@ -45,5 +47,13 @@ public class Tower : MonoBehaviour
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.length / 2);
         Destroy(gameObject);
+    }
+
+    public void SetTile(BuildableTile tile) {
+        myTile = tile;
+    }
+
+    private void OnDestroy() {
+        myTile.currentTower = TowerType.NONE;
     }
 }
