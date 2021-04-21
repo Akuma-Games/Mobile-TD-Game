@@ -33,34 +33,41 @@ public class Healer : Tower
 
     IEnumerator Heal() {
         while (true) {
-            if (alliesInRange.Count > 0) {
-                if (alliesInRange.Count == 1)
-                    healingTarget = alliesInRange[0];
-                else
-                    healingTarget = PickTargetToHeal();
+            if (FindObjectOfType<GameManager>().CurrentlyHaveAWave) {
+                if (alliesInRange.Count > 0) {
+                    if (alliesInRange.Count == 1)
+                        healingTarget = alliesInRange[0];
+                    else
+                        healingTarget = PickTargetToHeal();
 
-                if (healingTarget != null) {
-                    if (healingTarget.GetComponent<Health>().HealthPercentage < 1) {
-                        healingTarget.GetComponent<Health>().ChangeHP(10);
-                        anim.SetBool("Healing", true);
+                    if (healingTarget != null) {
+                        if (healingTarget.GetComponent<Health>().HealthPercentage < 1) {
+                            healingTarget.GetComponent<Health>().ChangeHP(10);
+                            anim.SetBool("Healing", true);
+                        }
+                    }
+                    else {
+                        alliesInRange.Remove(healingTarget);
+                        anim.SetBool("Healing", false);
+                    }
+
+                    yield return new WaitForSeconds(1.333f);
+
+                    if (healingTarget == null) {
+                        alliesInRange.Remove(healingTarget);
+                        anim.SetBool("Healing", false);
                     }
                 }
                 else {
-                    alliesInRange.Remove(healingTarget);
                     anim.SetBool("Healing", false);
-                }
-
-                yield return new WaitForSeconds(1.333f);
-
-                if (healingTarget == null) {
-                    alliesInRange.Remove(healingTarget);
-                    anim.SetBool("Healing", false);
+                    yield return new WaitUntil(() => alliesInRange.Count > 0);
                 }
             }
             else {
                 anim.SetBool("Healing", false);
-                yield return new WaitUntil(() => alliesInRange.Count > 0);
+                yield return new WaitUntil(() => FindObjectOfType<GameManager>().CurrentlyHaveAWave);
             }
+            
         }
 
         GameObject PickTargetToHeal() {

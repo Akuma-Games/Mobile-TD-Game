@@ -18,6 +18,7 @@ public class WaveSpawner : MonoBehaviour
     }
 
     public void StartWave() {
+        FindObjectOfType<GameManager>().CurrentlyInAWave(true);
         StartCoroutine(SpawnWave(currentWave));
     }
 

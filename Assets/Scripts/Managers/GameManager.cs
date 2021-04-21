@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public int wave = 1;
 
     private bool isPaused = false;
+    private bool currentlyHaveAWave = false;
 
     public static GameManager Instance
     {
@@ -165,6 +166,7 @@ public class GameManager : MonoBehaviour
             // wave complete
             startWaveButton.SetActive(true);
             qManager.CompleteWave();
+            currentlyHaveAWave = false;
         }
     }
 
@@ -187,4 +189,10 @@ public class GameManager : MonoBehaviour
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0.0f : 1.0f;
     }
+
+    public void CurrentlyInAWave(bool b) {
+        currentlyHaveAWave = b;
+    }
+
+    public bool CurrentlyHaveAWave { get { return currentlyHaveAWave; } }
 }
