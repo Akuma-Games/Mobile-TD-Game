@@ -53,7 +53,7 @@ public class Healer : Tower
                 yield return new WaitForSeconds(1.333f);
 
                 if (healingTarget == null) {
-                     alliesInRange.Remove(healingTarget);
+                    alliesInRange.Remove(healingTarget);
                     anim.SetBool("Healing", false);
                 }
             }

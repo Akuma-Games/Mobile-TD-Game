@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject startWaveButton;
 
+    [SerializeField] GameObject enemyPath;
+    [SerializeField] List<GameObject> lowerBuildableTiles;
+
     private int enemiesInTheScene = 0;
     public int EnemiesInTheScene { get; set; }
 
@@ -59,6 +62,12 @@ public class GameManager : MonoBehaviour
         towerCollection.Initialize();
 
         EnemiesInTheScene = 0;
+
+        lowerBuildableTiles = new List<GameObject>();
+
+        for (int i = 0; i < enemyPath.transform.childCount; i++) {
+            lowerBuildableTiles.Add(enemyPath.transform.GetChild(i).gameObject);
+        }
 
         StartCoroutine(GenerateWood());
         StartCoroutine(GenerateStone());
@@ -131,7 +140,18 @@ public class GameManager : MonoBehaviour
         ResourceManager.Instance.stoneAmount.text = ResourceManager.Instance.stone.ToString();
         Vector3 towerOffset = new Vector3(0, 1.1f, 0) + tile.transform.position;
         //insert some kind of validation for tower types here maybe?
-        Instantiate(towerCollection[CurrentTowerBuilding], towerOffset, Quaternion.identity);
+        GameObject tower = Instantiate(towerCollection[CurrentTowerBuilding], towerOffset, Quaternion.identity);
+
+        if (CurrentTowerBuilding == TowerType.TANK) {
+            Debug.Log("Currently at " + lowerBuildableTiles.IndexOf(tile.gameObject));
+            int currentTileIndex = lowerBuildableTiles.IndexOf(tile.gameObject);
+            int targetTowerTileIndex = currentTileIndex > 0 ? currentTileIndex - 1 : 0;
+            GameObject targetTowerTile = lowerBuildableTiles[targetTowerTileIndex];
+            Debug.Log("Lookign at " + targetTowerTile.name);
+            tower.transform.rotation = Quaternion.LookRotation(targetTowerTile.transform.position + new Vector3(0, 1.1f, 0) - tower.transform.position);
+            
+        }
+
         tile.currentTower = CurrentTowerBuilding;
     }
 

@@ -1204,6 +1204,8 @@ MonoBehaviour:
   gameOverScreen: {fileID: 1083463241}
   towerCollection: {fileID: 11400000, guid: 46a2da3738d315a49860cb0af5478a92, type: 2}
   startWaveButton: {fileID: 1518950516}
+  enemyPath: {fileID: 1803092154}
+  lowerBuildableTiles: []
   score: 0
   wave: 1
 --- !u!4 &83419551
@@ -24794,7 +24796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1862814910336154, guid: 92933f77fa05a2a48a398bb10c8ce5ee, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4759945901354242, guid: 92933f77fa05a2a48a398bb10c8ce5ee, type: 3}
       propertyPath: m_LocalPosition.x
