@@ -34,7 +34,8 @@ public class MeleeTower : Tower
                 if (enemiesInRange[0] != null) {
                     attackTarget = enemiesInRange[0];
                     swordAtk.Play();
-                    yield return new WaitForSeconds(1.3333f);
+                    yield return new WaitForSeconds(0.8f);
+                    
 
                     try {
                         if (attackTarget != null) {
