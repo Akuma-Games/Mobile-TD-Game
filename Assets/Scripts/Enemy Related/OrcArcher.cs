@@ -54,12 +54,15 @@ public class OrcArcher : Enemy
 
                     attackTarget = attackTarget.transform.parent.gameObject;
                     yield return new WaitForSeconds(1.4f);
-                    GameObject spawnedArrow = Instantiate(arrowPrefab, arrowSpawnPoint);
-                    spawnedArrow.GetComponent<Arrow>().SetTarget(attackTarget);
-                    Debug.Log(attackTarget.name);
+                    
 
                     try {
+                        GameObject spawnedArrow = Instantiate(arrowPrefab, arrowSpawnPoint);
+                       
                         if (attackTarget != null) {
+                            spawnedArrow.GetComponent<Arrow>().SetTarget(attackTarget);
+                            Debug.Log(attackTarget.name);
+
 
                             if (attackTarget.GetComponent<Health>().WillDieFromDamage(25)) {
                                 enemiesInRange.Remove(originalAttackTarget);
@@ -87,6 +90,10 @@ public class OrcArcher : Enemy
 
 
         }
+    }
+
+    private void OnDestroy() {
+        
     }
 
 
