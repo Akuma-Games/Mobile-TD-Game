@@ -17,16 +17,22 @@ public class Arrow : MonoBehaviour
     float arcFactor = 0.1f;
 
     private void Start() {
-        targetPosition = targetEnemy.transform.position + enemyPositionOffset;
-        origin = currentPosition = transform.position;
-        radiusSq = radius * radius;
+        if (targetEnemy != null) {
 
-        Vector3 direction = targetPosition - currentPosition;
-        if (direction.sqrMagnitude < radiusSq) {
-            Debug.Log("DESTROYED ON START");
-            targetEnemy.GetComponent<Health>().ChangeHP(-25);
+            targetPosition = targetEnemy.transform.position + enemyPositionOffset;
+            origin = currentPosition = transform.position;
+            radiusSq = radius * radius;
+
+            Vector3 direction = targetPosition - currentPosition;
+            if (direction.sqrMagnitude < radiusSq) {
+                Debug.Log("DESTROYED ON START");
+                targetEnemy.GetComponent<Health>().ChangeHP(-25);
+                Destroy(gameObject);
+
+            }
+        }
+        else {
             Destroy(gameObject);
-            
         }
     }
 
