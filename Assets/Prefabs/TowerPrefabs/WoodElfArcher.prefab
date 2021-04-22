@@ -857,7 +857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  coinPrefab: {fileID: 480969846719793550, guid: 12b70dda3833ab54fa0aa5852a663802, type: 3}
+  currentHealth: 0
 --- !u!135 &246007748
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -885,7 +885,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 94
   m_CollisionDetection: 0
 --- !u!114 &947557411026449424
 MonoBehaviour:
@@ -900,6 +900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesInRange: []
+  myTile: {fileID: 0}
   arrowPrefab: {fileID: 662292099626306998, guid: 1e73c84b5b4daa04c9e4398a420b1141, type: 3}
   arrowSpawnPoint: {fileID: 4699391195019780038}
 --- !u!82 &1635073306737163222
