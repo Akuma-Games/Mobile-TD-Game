@@ -44,6 +44,9 @@ public class WaveSpawner : MonoBehaviour
             
         }
 
+        Debug.Log("WAVE DONE SPAWNING");
+        FindObjectOfType<GameManager>().WaveDoneSpawning = true;
+
         waveIndex++;
 
         try {
@@ -51,7 +54,7 @@ public class WaveSpawner : MonoBehaviour
         }
         catch (Exception e) {
             // spawned all waves
-            Debug.Log(e.Message);
+            
         }
     }
 

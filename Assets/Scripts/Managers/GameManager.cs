@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject enemyPath;
     [SerializeField] List<GameObject> lowerBuildableTiles;
 
-    private int enemiesInTheScene = 0;
     public int EnemiesInTheScene { get; set; }
 
     public int score = 0;
@@ -36,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     private bool isPaused = false;
     private bool currentlyHaveAWave = false;
+    private bool waveDoneSpawning = false;
+    public bool WaveDoneSpawning { set { waveDoneSpawning = value; } }
 
     public static GameManager Instance
     {
@@ -160,12 +161,13 @@ public class GameManager : MonoBehaviour
     public void EnemyDie() {
         EnemiesInTheScene--;
         qManager.KillEnemy();
-        if (EnemiesInTheScene <= 0) {
+        if (EnemiesInTheScene <= 0 && waveDoneSpawning) {
             // wave complete
             startWaveButton.SetActive(true);
             qManager.CompleteWave();
             currentlyHaveAWave = false;
             wave++;
+            waveDoneSpawning = false;
         }
     }
 
