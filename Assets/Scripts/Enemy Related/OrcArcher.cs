@@ -33,14 +33,14 @@ public class OrcArcher : Enemy
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("ArcherTarget")) {
-            enemiesInRange.Add(other.gameObject);
+            enemiesInRange.Add(other.transform.parent.gameObject);
             anim.SetBool("Attacking", true);
         }
     }
 
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.CompareTag("ArcherTarget")) {
-            enemiesInRange.Remove(other.gameObject);
+            enemiesInRange.Remove(other.transform.parent.gameObject);
         }
     }
 
@@ -50,22 +50,16 @@ public class OrcArcher : Enemy
 
                 if (enemiesInRange[0] != null) {
                     attackTarget = enemiesInRange[0];
-                    GameObject originalAttackTarget = attackTarget;
-
-                    attackTarget = attackTarget.transform.parent.gameObject;
                     yield return new WaitForSeconds(1.4f);
-                    
-
-                    try {
-                        GameObject spawnedArrow = Instantiate(arrowPrefab, arrowSpawnPoint);
-                       
+                    GameObject spawnedArrow = Instantiate(arrowPrefab, arrowSpawnPoint);
+                    spawnedArrow.GetComponent<Arrow>().SetTarget(attackTarget);
+                    try {        
                         if (attackTarget != null) {
-                            spawnedArrow.GetComponent<Arrow>().SetTarget(attackTarget);
-                            Debug.Log(attackTarget.name);
+                          
 
 
                             if (attackTarget.GetComponent<Health>().WillDieFromDamage(25)) {
-                                enemiesInRange.Remove(originalAttackTarget);
+                                enemiesInRange.Remove(attackTarget);
                                 //attackTarget.GetComponent<Health>().ChangeHP(-25);
                             }
                             else {
@@ -74,7 +68,7 @@ public class OrcArcher : Enemy
                         }
                         else {
                             Destroy(spawnedArrow);
-                            enemiesInRange.Remove(originalAttackTarget);
+                            enemiesInRange.Remove(attackTarget);
 
                         }
                     }
@@ -86,6 +80,7 @@ public class OrcArcher : Enemy
             else {
                 anim.SetBool("Attacking", false);
                 yield return new WaitUntil(() => enemiesInRange.Count > 0);
+                
             }
 
 

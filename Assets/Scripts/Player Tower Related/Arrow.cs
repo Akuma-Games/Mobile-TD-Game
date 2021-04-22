@@ -56,7 +56,7 @@ public class Arrow : MonoBehaviour
         if (direction.sqrMagnitude < radius) {
             this.gameObject.SetActive(false);
             targetEnemy.GetComponent<Health>().ChangeHP(-25);
-            Debug.Log("hit radius");
+            //Debug.Log("hit radius");
         }
 
     }
