@@ -11,8 +11,8 @@ public class QuestManager : MonoBehaviour
     int enemyTarget;
     int waveTarget;
 
-    int questLevel_Enemy = 1;
-    int questLevel_Wave = 1;
+    public int questLevel_Enemy = 1;
+    public int questLevel_Wave = 1;
 
     [SerializeField] Text enemyAmountText;
     [SerializeField] Text waveAmountText;
@@ -38,7 +38,7 @@ public class QuestManager : MonoBehaviour
         {
             ResourceManager.Instance.CollectResource((ResourceType)Random.Range(0, 3), questLevel_Enemy * 100);
             questLevel_Enemy++;
-            enemyTarget = questLevel_Enemy * 10;
+            
             enemiesKilled = 0;
             questCompleteSound.Play();
             UpdateEnemyAmountText();
@@ -56,7 +56,7 @@ public class QuestManager : MonoBehaviour
         {
             ResourceManager.Instance.CollectResource((ResourceType)Random.Range(0, 3), questLevel_Wave * 50);
             questLevel_Wave++;
-            waveTarget = questLevel_Wave;
+            
             wavesCompleted = 0;
             questCompleteSound.Play();
             UpdateWaveAmountText();
@@ -69,11 +69,13 @@ public class QuestManager : MonoBehaviour
 
     public void UpdateEnemyAmountText()
     {
+        enemyTarget = questLevel_Enemy * 10;
         enemyAmountText.text = enemiesKilled + " / " + enemyTarget;
     }
 
     public void UpdateWaveAmountText()
     {
+        waveTarget = questLevel_Wave;
         waveAmountText.text = wavesCompleted + " / " + waveTarget;
     }
 }

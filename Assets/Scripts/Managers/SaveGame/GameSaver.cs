@@ -38,6 +38,11 @@ public class GameSaver : MonoBehaviour
             PlayerPrefs.SetInt(slotName, (int)towerData.existingTowers[i]);
         }
 
+        PlayerPrefs.SetInt("waveQuest", FindObjectOfType<QuestManager>().questLevel_Wave);
+        PlayerPrefs.SetInt("enemyQuest", FindObjectOfType<QuestManager>().questLevel_Enemy);
+        PlayerPrefs.SetInt("wavesCompleted", FindObjectOfType<QuestManager>().wavesCompleted);
+        PlayerPrefs.SetInt("enemiesKilled", FindObjectOfType<QuestManager>().enemiesKilled);
+
         PlayerPrefs.Save();
     }
 
@@ -52,6 +57,13 @@ public class GameSaver : MonoBehaviour
         ResourceManager.Instance.goldAmount.text = ResourceManager.Instance.gold.ToString();
         ResourceManager.Instance.stoneAmount.text = ResourceManager.Instance.stone.ToString();
         ResourceManager.Instance.woodAmount.text = ResourceManager.Instance.wood.ToString();
+
+        FindObjectOfType<QuestManager>().questLevel_Wave = PlayerPrefs.GetInt("waveQuest");
+        FindObjectOfType<QuestManager>().questLevel_Enemy = PlayerPrefs.GetInt("enemyQuest");
+        FindObjectOfType<QuestManager>().wavesCompleted = PlayerPrefs.GetInt("wavesCompleted");
+        FindObjectOfType<QuestManager>().enemiesKilled = PlayerPrefs.GetInt("enemiesKilled");
+        FindObjectOfType<QuestManager>().UpdateEnemyAmountText();
+        FindObjectOfType<QuestManager>().UpdateWaveAmountText();
 
         // Tower
         BuildableTile[] allTiles = FindObjectsOfType<BuildableTile>();
