@@ -17,11 +17,12 @@ public class TowerDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     private void Awake() {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        originalPosition = rectTransform.position;
+        
     }
 
     void Start()
     {
+        originalPosition = rectTransform.position;
 
     }
     public void OnBeginDrag(PointerEventData eventData) {
