@@ -91,6 +91,8 @@ public class OrcArcher : Enemy
         
     }
 
-
+    public void RemoveFromList(GameObject deadEnemy) {
+        enemiesInRange.Remove(deadEnemy);
+    }
 
 }

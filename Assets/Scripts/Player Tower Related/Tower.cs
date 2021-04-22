@@ -59,5 +59,15 @@ public class Tower : MonoBehaviour
         foreach (var healer in healers) {
             healer.RemoveFromList(this.gameObject);
         }
+
+        OrcArcher[] orcArchers = FindObjectsOfType<OrcArcher>();
+        foreach (var orcArcher in orcArchers) {
+            orcArcher.RemoveFromList(this.gameObject);
+        }
+    }
+
+    public void RemoveFromList(GameObject deadEnemy) {
+        enemiesInRange.Remove(deadEnemy);
     }
 }
+

@@ -60,7 +60,5 @@ public class ArcherTower : Tower
         }
     }
 
-    public void RemoveFromList(GameObject deadEnemy) {
-        enemiesInRange.Remove(deadEnemy);
-    }
+    
 }

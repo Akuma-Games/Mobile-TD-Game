@@ -54,7 +54,7 @@ public class WaveSpawner : MonoBehaviour
         }
         catch (Exception e) {
             // spawned all waves
-            
+            Debug.Log("Spawned all waves");
         }
     }
 

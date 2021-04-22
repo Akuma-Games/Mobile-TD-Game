@@ -67,9 +67,9 @@ public class Enemy : MonoBehaviour
         DeathSound.Play();
         GetComponent<Animator>().SetTrigger("Die");
 
-        ArcherTower[] archers = FindObjectsOfType<ArcherTower>();
-        foreach (var archer in archers) {
-            archer.RemoveFromList(this.gameObject);
+        Tower[] towers = FindObjectsOfType<Tower>();
+        foreach (var tower in towers) {
+            tower.RemoveFromList(this.gameObject);
         }
 
         if (!dead)
