@@ -55,5 +55,9 @@ public class Tower : MonoBehaviour
 
     private void OnDestroy() {
         myTile.currentTower = TowerType.NONE;
+        Healer[] healers = FindObjectsOfType<Healer>();
+        foreach (var healer in healers) {
+            healer.RemoveFromList(this.gameObject);
+        }
     }
 }

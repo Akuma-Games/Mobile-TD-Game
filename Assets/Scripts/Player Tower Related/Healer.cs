@@ -92,5 +92,11 @@ public class Healer : Tower
 
             return targetAlly;
         }
+
+        
+    }
+
+    public void RemoveFromList(GameObject deadTower) {
+        alliesInRange.Remove(deadTower);
     }
 }

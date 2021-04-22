@@ -63,8 +63,15 @@ public class Enemy : MonoBehaviour
     }
 
     public IEnumerator Die() {
+
         DeathSound.Play();
         GetComponent<Animator>().SetTrigger("Die");
+
+        ArcherTower[] archers = FindObjectsOfType<ArcherTower>();
+        foreach (var archer in archers) {
+            archer.RemoveFromList(this.gameObject);
+        }
+
         if (!dead)
             ResourceManager.Instance.GetResource(ResourceType.GOLD, transform.position);
         dead = true;
